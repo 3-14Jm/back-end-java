@@ -12,6 +12,7 @@ public class Review {
     private Pot potByPotId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
