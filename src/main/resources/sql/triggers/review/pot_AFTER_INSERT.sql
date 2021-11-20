@@ -1,0 +1,11 @@
+DROP TRIGGER IF EXISTS `pjm_web_db`.`review_AFTER_INSERT`;
+
+DELIMITER $$
+USE `pjm_web_db`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `pjm_web_db`.`review_AFTER_INSERT` AFTER INSERT ON `review` FOR EACH ROW
+BEGIN
+    IF new.rate  NOT BETWEEN 1 AND 10 THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "INSERT Error (rate should be between 1 and 10).";
+	END IF;
+END$$
+DELIMITER ;
