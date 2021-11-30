@@ -7,11 +7,13 @@ import com.fox.mapper.PotMapper;
 import com.fox.service.AbstractService;
 import com.fox.service.PotService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping(value = "/pots")
 @RestController
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class PotController extends AbstractController<Pot, PotDTO, Integer> {
     private final PotService potService;
@@ -26,5 +28,11 @@ public class PotController extends AbstractController<Pot, PotDTO, Integer> {
     @Override
     protected AbstractMapper<Pot, PotDTO> getMapper() {
         return potMapper;
+    }
+
+
+    @GetMapping("/param")
+    public List<Pot> getVasesByParam(@RequestParam String name, @RequestParam int order) {
+        return potService.getPotsByParam(name, order);
     }
 }

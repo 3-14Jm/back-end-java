@@ -7,10 +7,12 @@ import com.fox.mapper.ReviewMapper;
 import com.fox.service.AbstractService;
 import com.fox.service.ReviewService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping(value = "/reviews")
+@CrossOrigin(origins = "*")
 @RestController
 @AllArgsConstructor
 public class ReviewController extends AbstractController<Review, ReviewDTO, Integer> {
